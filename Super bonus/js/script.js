@@ -1,4 +1,3 @@
-
 /* FUNZIONE CHE GENERA LA GRIGLIA */
 function creazioneGriglia(num){
     /* GENERO UN DIV */
@@ -7,60 +6,68 @@ function creazioneGriglia(num){
     elem_griglia.classList.add(`square`);
     /* LO NUMERO */
     elem_griglia.innerText = num;
-  
-
-    
-    let livello = document.getElementById(`difficulty`);
-    let difficolta = parseInt(livello.value);
-    
-
-    let num_cells;
-    let side_cells;
-
-    switch(difficolta){
-        case 1:
-            num_cells = 100;
-            side_cells = 10;
-            break;
-        case 2:
-            num_cells = 81;
-            side_cells = 9;
-            break;
-        case 3:
-            num_cells = 49;
-            side_cells = 7
-            break;
-            
-    }
-  
-
+    /* RITORNO IL RISULTATO */
+    return elem_griglia
+}
 
 /* VARIABILE BOTTONE CHE ANDRA A GENERARE LA GRIGLIA E LE CELLE */
-    let button = document.getElementById(`button`);
-        /* BOTTONE CON EVENTO CLICK */
-        button.addEventListener(`click`, function(){
-            /* PRENDIAMO LA GRIGLIA DAL DOM */
-            let griglia = document.getElementById(`grid`);
-            griglia.innerHTML = ""
-                /* CICLO FOR PER CREARE I VARI QUADRATI */
-                for(let i=1; i<=num_cells; i++){
-                    /* RICHIAMO LA FUNZIONE creazioneGriglia */
-                    let square = creazioneGriglia(i);
-                    
-                    /* EVENTO CAMBIO COLORE CELLA AL CLICK */
-                    square.addEventListener(`click`, function(){
-                        this.classList.toggle(`cliccato`);
-                        console.log(`Hai cliccato la cella numero ${i+1}`)
-                    })
-                    /* APPENDO LO SQUARE ALLA GRIGLIA */
-                    griglia.appendChild(square);
-                }    
-        })
-    }
+let button = document.getElementById(`button`);
 
+/* FUNZIONE GENERA CELLA */
+function creazioneCella(){
+    /* BOTTONE CON EVENTO CLICK */
+    button.addEventListener(`click`, function(){
+        /* PRENDIAMO LA GRIGLIA DAL DOM */
+        let griglia = document.getElementById(`grid`);
+        griglia.innerHTML = ""
 
+        /* PRENDO L'INPUT DELL'UTENTE PER SELEZIONARE LA DIFFICOLTA */
+        let livello = document.getElementById(`difficulty`);
+        /* TRASFORMO L'INPUT IN UN VALORE */
+        let difficolta = parseInt(livello.value);
+
+        /* DICHIARO LE CELLE A VALORE 0 */
+        let num_cells;
+        let side_cells;
+
+        switch(difficolta){
+            /* PRIMO CASO: GRIGLIA 10x10 */
+            case 1:
+                num_cells = 100;
+                side_cells = 10;
+                break;
+            /* SECONDO CASO: GRIGLIA 9x9 */
+            case 2:
+                num_cells = 81;
+                side_cells = 9;
+                break;
+            case 3:
+            /* TERZO CASO: GRIGLIA 7x7 */
+                num_cells = 49;
+                side_cells = 7
+                break;     
+            /* SE NON VIENE SELEZIONATO NESSUN VALORE SI CANCELLA LA GRIGLIA ATTUALE */
+            default:
+                break;
+        } 
+
+        /* CICLO FOR PER CREARE I VARI QUADRATI */
+        for(let i=0; i<num_cells; i++){
+            /* RICHIAMO LA FUNZIONE creazioneGriglia */
+            let square = creazioneGriglia(i+1);
+                
+            /* EVENTO CAMBIO COLORE CELLA AL CLICK */
+            square.addEventListener(`click`, function(){
+                this.classList.toggle(`cliccato`);
+                console.log(`Hai cliccato la cella numero ${i+1}`)
+            })
+            /* APPENDO LO SQUARE ALLA GRIGLIA */
+            griglia.appendChild(square);
+            }    
+    })
+}
 /* RICHIAMO FUNZIONE creazioneCella */
-creazioneGriglia(button)
+creazioneCella(button)
     
 
 
