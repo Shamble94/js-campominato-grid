@@ -8,8 +8,7 @@
     flex-wrap: wrap;
 }
 .square{
-    width: 100px;
-    height: 100px;
+   
     background-color: goldenrod;
     border: 1px solid black;
     display: flex;

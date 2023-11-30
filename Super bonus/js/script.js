@@ -1,9 +1,11 @@
 /* FUNZIONE CHE GENERA LA GRIGLIA */
-function creazioneGriglia(num){
+function creazioneGriglia(num, cells_in_row){
     /* GENERO UN DIV */
     const elem_griglia = document.createElement(`div`);
     /* GLI ASSOCIO LA CLASS SQUARE */
     elem_griglia.classList.add(`square`);
+    elem_griglia.style.width = `calc(100% / ${cells_in_row})`
+    elem_griglia.style.height = elem_griglia.style.width
     /* LO NUMERO */
     elem_griglia.innerText = num;
     /* RITORNO IL RISULTATO */
@@ -48,13 +50,14 @@ function creazioneCella(){
                 break;     
             /* SE NON VIENE SELEZIONATO NESSUN VALORE SI CANCELLA LA GRIGLIA ATTUALE */
             default:
+                alert("Seleziona un livello di difficolta")
                 break;
         } 
 
         /* CICLO FOR PER CREARE I VARI QUADRATI */
         for(let i=0; i<num_cells; i++){
             /* RICHIAMO LA FUNZIONE creazioneGriglia */
-            let square = creazioneGriglia(i+1);
+            let square = creazioneGriglia(i+1, side_cells);
                 
             /* EVENTO CAMBIO COLORE CELLA AL CLICK */
             square.addEventListener(`click`, function(){
@@ -68,8 +71,3 @@ function creazioneCella(){
 }
 /* RICHIAMO FUNZIONE creazioneCella */
 creazioneCella(button)
-    
-
-
-
-
