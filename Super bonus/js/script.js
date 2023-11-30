@@ -5,7 +5,7 @@ function creazioneGriglia(num, side_cells){
     /* GLI ASSOCIO LA CLASS SQUARE */
     elem_griglia.classList.add(`square`);
     elem_griglia.style.width = `calc(100% / ${side_cells})`
-    
+    elem_griglia.style.height = `calc(100% / ${side_cells})`
     /* LO NUMERO */
     elem_griglia.innerText = num;
     /* RITORNO IL RISULTATO */
