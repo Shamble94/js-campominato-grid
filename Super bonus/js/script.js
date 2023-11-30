@@ -1,11 +1,11 @@
 /* FUNZIONE CHE GENERA LA GRIGLIA */
-function creazioneGriglia(num, cells_in_row){
+function creazioneGriglia(num, side_cells){
     /* GENERO UN DIV */
     const elem_griglia = document.createElement(`div`);
     /* GLI ASSOCIO LA CLASS SQUARE */
     elem_griglia.classList.add(`square`);
-    elem_griglia.style.width = `calc(100% / ${cells_in_row})`
-    elem_griglia.style.height = elem_griglia.style.width
+    elem_griglia.style.width = `calc(100% / ${side_cells})`
+    
     /* LO NUMERO */
     elem_griglia.innerText = num;
     /* RITORNO IL RISULTATO */
